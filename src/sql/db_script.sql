@@ -5,74 +5,74 @@ USE `nostradamus`;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-		`id` 				INT 				NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
-		`email` 			VARCHAR(100) 		NOT NULL 				UNIQUE,
+		`id` 						INT 						NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
+		`email` 				VARCHAR(100) 		NOT NULL 				UNIQUE,
 		`password` 			VARCHAR(100)		NOT NULL
 );
 
 DROP TABLE IF EXISTS `roles`;					
 CREATE TABLE `roles`(
-		`id` 				INT 				NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
-		`name` 				VARCHAR(50) 		NOT NULL
+		`id` 						INT 						NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
+		`name` 					VARCHAR(50) 		NOT NULL
 );
 
 DROP TABLE IF EXISTS `users_roles`;
 CREATE TABLE `users_roles`(
-		`id` 				INT					NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
-		`user_id` 			INT 				NOT NULL, 
-		`role_id` 			INT 				NOT NULL
+		`id` 						INT							NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
+		`user_id` 			INT 						NOT NULL, 
+		`role_id` 			INT 						NOT NULL
 );
 
 DROP TABLE IF EXISTS `wallets`;
 CREATE TABLE `wallets`(
-		`id` 				INT 				NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
-		`user_id` 			INT 				NOT NULL, 
-		`score` 			INT 				NOT NULL
+		`id` 						INT 						NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
+		`user_id` 			INT 						NOT NULL, 
+		`score` 				INT 						NOT NULL
 );
 
 DROP TABLE IF EXISTS `users_info`;
 CREATE TABLE `users_info`(
-		`id`				INT					NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
-		`user_id` 			INT 				NOT NULL, 
-		`name` 				VARCHAR(50) 		NOT NULL,
-		`image` 			VARCHAR(255),
-		`gender` 			VARCHAR(1) 		NOT NULL,
-		`birthday` 			datetime 			NOT NULL
+		`id`						INT							NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
+		`user_id` 			INT 						NOT NULL, 
+		`name` 					VARCHAR(50) 		NOT NULL,
+		`image` 				VARCHAR(255),
+		`gender` 				VARCHAR(1) 			NOT NULL,
+		`birthday` 			datetime 				NOT NULL
 );
 
 DROP TABLE IF EXISTS `events`;
 CREATE TABLE `events`(
-		`id` 				INT 				NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
-		`name` 				VARCHAR(50) 		NOT NULL,
-		`create_at` 		DATETIME 			NOT NULL,
-		`start_date`		DATETIME 			NOT NULL,
-		`end_date` 			DATETIME 			NOT NULL,
-		`description` 		TEXT 				NOT NULL
+		`id` 						INT 						NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
+		`name` 					VARCHAR(50) 		NOT NULL,
+		`create_at` 		DATETIME 				NOT NULL,
+		`start_date`		DATETIME 				NOT NULL,
+		`end_date` 			DATETIME 				NOT NULL,
+		`description` 	TEXT 						NOT NULL
 );
 
 DROP TABLE IF EXISTS `bets`;
 CREATE TABLE `bets`(
-		`id` 				INT 				NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
-		`name` 				VARCHAR(50) 		NOT NULL,
-		`event_id` 			INT 				NOT NULL, 
-		`coefficient` 		INT 				NOT NULL,
-        `win` 				BOOLEAN 			NOT NULL
+		`id` 						INT 						NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
+		`name` 					VARCHAR(50) 		NOT NULL,
+		`event_id` 			INT 						NOT NULL, 
+		`coefficient` 	INT 						NOT NULL,
+        `win` 			BOOLEAN 				NOT NULL
 );
 
 DROP TABLE IF EXISTS `users_bets`;
 CREATE TABLE `users_bets`(
-		`id` 				INT 				NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
-		`user_id` 			INT 				NOT NULL, 
-		`bet_id` 			INT 				NOT NULL,
-        `sum`				INT					NOT NULL
+		`id` 						INT 						NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
+		`user_id` 			INT 						NOT NULL, 
+		`bet_id` 				INT 						NOT NULL,
+        `sum`				INT							NOT NULL
 );
 
 DROP TABLE IF EXISTS `history_operations`;
 CREATE TABLE `history_operations`(
-		`id`				INT 				NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
-		`wallet_id` 		INT 				NOT NULL, 
-		`description` 		TEXT 				NOT NULL,
-		`score` 			INT 				NOT NULL
+		`id`						INT 						NOT NULL				AUTO_INCREMENT				PRIMARY KEY,
+		`wallet_id` 		INT 						NOT NULL, 
+		`description` 	TEXT 						NOT NULL,
+		`score` 				INT 						NOT NULL
 );
 
 ALTER TABLE users_info

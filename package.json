@@ -1,0 +1,29 @@
+{
+  "name": "l-nodejs",
+  "version": "1.0.0",
+  "description": "labNodejs Nostradamus",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlinaTararako/Lab.git"
+  },
+  "author": "Alina Tararako",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlinaTararako/Lab/issues"
+  },
+  "homepage": "https://github.com/AlinaTararako/Lab#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12",
+    "mysql2": "^2.3.3-rc.0",
+    "sequelize": "^6.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
