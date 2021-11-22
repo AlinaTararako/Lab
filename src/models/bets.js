@@ -1,37 +1,38 @@
-module.exports = (sequelize, DataTypes) => {
+const Sequelize = require("sequelize");
+const sequelize = require("../config/db.config");
+
 	const Bet = sequelize.define(
 		'bets', {
 		id: {
-			type: DataTypes.INTEGER,
-			allowNull: 			false,
-			primaryKey:	 		true,
-			autoIncrement: 	true,
+				type: Sequelize.INTEGER,
+				allowNull: 			false,
+				primaryKey:	 		true,
+				autoIncrement: 	true,
 		},
 
    	eventId: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
+				type: Sequelize.INTEGER,
+				allowNull: false,
 		},
 
-    userName: {
-      type: DataTypes.STRING,
-			allowNull: false,
+    	userName: {
+     			type: Sequelize.STRING,
+				allowNull: false,
     },
 
-     coefficient: {
-      type: DataTypes.INTEGER,
-			allowNull: false,    
+     	coefficient: {
+      		type: Sequelize.INTEGER,
+				allowNull: false,    
     },
 
-    win: {
-			type: DataTypes.BOOLEAN,
-      allowNull: false,
+    	win: {
+				type: Sequelize.BOOLEAN,
+      		allowNull: false,
 		},
     
 	}, {
-		timestamps: false   //?
+				timestamps: false   //?
 	});
 
   
-	return Bet;
-};
+	module.exports = Bet;

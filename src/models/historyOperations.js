@@ -1,32 +1,33 @@
-module.exports = (sequelize, DataTypes) => {
+const Sequelize = require("sequelize");
+const sequelize = require("../config/db.config");
+
 	const HistoryOperation = sequelize.define(
 		'historyOperations', {
 		id: {
-			type: DataTypes.INTEGER,
+			type: 			Sequelize.INTEGER,
 			allowNull: 			false,
 			primaryKey:	 		true,
 			autoIncrement: 	true,
 		},
 
-    score:{
-      type: DataTypes.INTEGER,
-			allowNull: true,   
+    	score:{
+      	type:				 Sequelize.INTEGER,
+			allowNull: 			true,   
     },
 
-		 walletId: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
+		walletId: {
+			type: 			Sequelize.INTEGER,
+			allowNull: 			false,
 		},	
 
      description:{
-      type: DataTypes.TEXT,
-			allowNull: false,
+      	type: 			Sequelize.TEXT,
+			allowNull: 			false,
     },
     
 	}, {
-			timestamps: false   //?
+			timestamps: false   
 	});
 
   
-	return HistoryOperation;
-};
+	module.exports = HistoryOperation;

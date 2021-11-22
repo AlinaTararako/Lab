@@ -1,27 +1,29 @@
-module.exports = (sequelize, DataTypes) => {
+const Sequelize = require("sequelize");
+const sequelize = require("../config/db.config");
+
 	const Wallet = sequelize.define(
 		'wallets', {
 		id: {
-			type: DataTypes.INTEGER,
+			type: 			Sequelize.INTEGER,
 			allowNull: 			false,
 			primaryKey:	 		true,
 			autoIncrement: 	true,
 		},
 
-    userId: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
+    	userId: {
+			type: 			Sequelize.INTEGER,
+			allowNull: 			false,
 		},
 
-    score:{
-      type: DataTypes.INTEGER,
-			allowNull: true,    // Can a wallet be empty?
+    	score:{
+      	type: 			Sequelize.FLOAT,
+			defaultNull: 		true,    
     },
     
 	}, {
-			timestamps: false   //?
+
+			timestamps: 		false   
+			
 	});
 
   
-	return Wallet;
-};

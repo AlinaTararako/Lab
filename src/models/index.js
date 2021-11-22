@@ -1,25 +1,53 @@
 
-const User = require('./users');
-const Role = require('./roles');
-const UserRole = require('./usersRoles');
-const Bet = require('./bets');
-const Wallet = require('./wallets');
-const Event = require('./events');
-const UserBet = require('./usersBets');
-const UserInfo = require('./usersInfo');
-const HistoryOperation = require('./historyOperations');
+const dbConfig = require("../config/db.config");
+const Sequelize = require('sequelize');
 
-Role.belongsToMany(User, { through: UserRole, foreignKey: "role_id"});
-User.belongsToMany(Role, { through: UserRole, foreignKey: "user_id"});
+const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+     host: dbConfig.HOST,
+     dialect: dbConfig.dialect,
+  
+  pool: {
+     max: dbConfig.pool.max,
+     min: dbConfig.pool.min,
+    acquire: dbConfig.pool.acquire,
+    idle: dbConfig.pool.idle
+  }
+});
 
-User.belongsTo(UserInfo, { foreignKey: "user_id"}); 
+const db = {};
 
-Event.belongsToMany(Bet, { foreignKey: "event_id"}); //?
+    db.Sequelize = Sequelize;
+    db.sequelize = sequelize;
 
-User.hasOne(Wallet, { foreignKey: "user_id"}); 
+    db.User = require("./users")(sequelize, Sequelize);
+    db.Role = require("./roles")(sequelize, Sequelize);
+    db.UserRole = require("./usersRoles")(sequelize, Sequelize);
+    db.Bet = require("./bets")(sequelize, Sequelize);
+    db.Wallet = require("./wallets")(sequelize, Sequelize);
+    db.Event = require("./events")(sequelize, Sequelize);
+    db.UserBet = require("./usersBets")(sequelize, Sequelize);
+    db.UserInfo = require("./usersInfo")(sequelize, Sequelize);
+    db.HistoryOperation = require("./historyOperations")(sequelize, Sequelize);
 
-User.belongsToMany(Bet, { through: UserBet, foreignKey: "user_id"});
 
-Bet.belongsToMany(User, { through: UserBet, foreignKey: "bet_id"});
+    Role.belongsToMany(User, { through: UserRole, foreignKey: "role_id"});
+    User.belongsToMany(Role, { through: UserRole, foreignKey: "user_id"});
 
-Wallet.belongsTo(HistoryOperation, { foreignKey: "wallet_id"}); 
+    User.hasOne(UserInfo, { foreignKey: "user_id"}); 
+    UserInfo.belongsTo(User, { foreignKey: "user_id"});
+
+    Event.belongsTo(Bet, { foreignKey: "event_id"}); 
+    Bet.hasMany(Event, { foreignKey: "event_id"});
+
+    User.hasOne(Wallet, { foreignKey: "user_id"}); 
+    Wallet.hasOne(User, { foreignKey: "user_id"}); 
+
+    UserBet.belongsToMany(User, { foreignKey: "user_id"});
+    User.hasMany(UserBet, { foreignKey: "user_id"});
+    UserBet.belongsTo(Bet, { foreignKey: "bet_id"});
+    Bet.hasOne(UserBet, { foreignKey: "bet_id"});
+
+    Wallet.belongsTo(HistoryOperation, { foreignKey: "wallet_id"});
+    HistoryOperation.hasMany(Wallet, { foreignKey: "wallet_id"});  
+
+    module.exports = db;

@@ -1,44 +1,43 @@
-module.exports = (sequelize, DataTypes) => {
+const Sequelize = require("sequelize");
+const sequelize = require("../config/db.config");
+
 	const Event = sequelize.define(
 		'events', {
 		id: {
-			type: DataTypes.INTEGER,
+			type: 			Sequelize.INTEGER,
 			allowNull: 			false,
 			primaryKey:	 		true,
 			autoIncrement: 	true,
 		},
 
-    eventName: {
-      type: DataTypes.STRING,
-			allowNull: false,
+      eventName: {
+         type: 			Sequelize.STRING,
+			allowNull:     	false,
       },
 
-    createdAt:
+    	createdAt:
 		{
-			type: DataTypes.DATE, field: 'created_at',
+			type: 			Sequelize.DATE, field: 'created_at',
 		},
 
 		startDate:
 		{
-			type: DataTypes.DATE, field: 'start_date',
+			type: 			Sequelize.DATE, field: 'start_date',
 		},
 
 		endDate:
 		{
-			type: DataTypes.DATE, field: 'end_date',
+			type: 			Sequelize.DATE, field: 'end_date',
 		},
 
-    description:{
-      type: DataTypes.TEXT,
-			allowNull: false,
+    	description:{
+      	type: 			Sequelize.TEXT,
+			allowNull: 			false,
     },
     
 	}, {
-		//createdAt: 'created_at',
-    updatedAt: 	'update_at',
-   // deletedAt: 'deleted_at',
+    		updatedAt: 			false,
 	});
 
   
-	return Event;
-};
+	module.exports = Event;

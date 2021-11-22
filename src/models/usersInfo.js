@@ -1,39 +1,41 @@
-module.exports = (sequelize, DataTypes) => {
+const Sequelize = require("sequelize");
+const sequelize = require("../config/db.config");
+
 	const UserInfo = sequelize.define(
 		'usersInfo', {
 		id: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			primaryKey: true,
-			autoIncrement: true,
+			type: 				Sequelize.INTEGER,
+			allowNull: 				false,
+			primaryKey: 			true,
+			autoIncrement: 		true,
 		},
 
-		userId: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
+			userId: {
+			type: 				Sequelize.INTEGER,
+			allowNull: 				false,
 		},
 
-    	userName: {
-      type: DataTypes.STRING,
-			allowNull: false,
+    		userName: {
+      	type: 				Sequelize.STRING,
+			allowNull: 				false,
     },
 
-      userImage: {
-			type: DataTypes.STRING,
-			allowNull: true,
+      	userImage: {
+			type: 				Sequelize.STRING,
+			allowNull: 				true,
 		},
 
-    	gender: {
-			type: DataTypes.ENUM('male', 'female'),
+    		gender: {
+			type: 				Sequelize.ENUM('male', 'female'),
 		},
 
-    	birthday:{
-      type: DataTypes.DATE
+    		birthday:{
+     		 type: 				Sequelize.DATE
     }
 	}, {
-			timestamps: false   //?
+
+			timestamps: false   
+
 	});
 
-  
-	return UserInfo;
-};
+  module.exports = UserInfo;
